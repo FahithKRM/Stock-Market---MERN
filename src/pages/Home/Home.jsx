@@ -40,7 +40,7 @@ const Home = () => {
                     </div>
                     <p>{currency.symbol} {coin.current_price.toLocalString()}</p>
                     <p>{Math.floor(coin.price_change_percentage_24h * 100)/100}</p>
-                    <p className=''>{currency.symbol} {coin.market_cap.toLocalString()}</p>
+                    <p>{currency.symbol} {coin.market_cap.toLocalString()}</p>
                 </div>
             ))}
         </div>
