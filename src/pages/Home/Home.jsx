@@ -1,31 +1,31 @@
 import { useContext, useEffect, useState } from "react";
 import "./Home.css";
-// import { CoinContext } from "../../context/CoinContext";
-// import { Link } from "react-router-dom";
+import { CoinContext } from "../../context/CoinContext";
+import { Link } from "react-router-dom";
 
 const Home = () => {
-  // const { allCoin, currency } = useContext(CoinContext);
-  // const [displayCoin, setDisplayCoin] = useState([]);
-  // const [input, setInput] = useState("");
+  const { allCoin, currency } = useContext(CoinContext);
+  const [displayCoin, setDisplayCoin] = useState([]);
+  const [input, setInput] = useState("");
 
-  // const InputHandler = (event) => {
-  //   setInput(event.target.value);
-  //   if (event.target.value === "") {
-  //     setDisplayCoin(allCoin);
-  //   }
-  // };
+  const InputHandler = (event) => {
+    setInput(event.target.value);
+    if (event.target.value === "") {
+      setDisplayCoin(allCoin);
+    }
+  };
 
-  // const searchHandler = async (event) => {
-  //   event.preventDefault();
-  //   const coins = await allCoin.filter((item) => {
-  //     return item.name.toLowerCase().includes(input.toLowerCase());
-  //   });
-  //   setDisplayCoin(coins);
-  // };
+  const searchHandler = async (event) => {
+    event.preventDefault();
+    const coins = await allCoin.filter((item) => {
+      return item.name.toLowerCase().includes(input.toLowerCase());
+    });
+    setDisplayCoin(coins);
+  };
 
-  // useEffect(() => {
-  //   setDisplayCoin(allCoin);
-  // }, [allCoin]);
+  useEffect(() => {
+    setDisplayCoin(allCoin);
+  }, [allCoin]);
 
   return (
     <div className="home">
@@ -58,7 +58,7 @@ const Home = () => {
           <p style={{textAlign: 'center'}}>24 Hours Change</p>
           <p className="market-cap">Market Cap</p>
         </div>
-        {/* {displayCoin.slice(0, 10).map((coin, index) => (
+        {displayCoin.slice(0, 10).map((coin, index) => (
           <div to={`/coin/${coin.id}`} className="table-layout" key={index}>
             <p>{coin.market_cap_rank}</p>
             <div>
@@ -66,14 +66,14 @@ const Home = () => {
               <p>{coin.name + " - " + coin.symbol}</p>
             </div>
             <p>
-              {currency.symbol} {coin.current_price.toLocalString()}
+              {currency.symbol} {coin.current_price}
             </p>
-            <p>{Math.floor(coin.price_change_percentage_24h * 100) / 100}</p>
-            <p>
-              {currency.symbol} {coin.market_cap.toLocalString()}
+            <p className={coin.price_change_percentage_24h > 0 ? 'green' : 'red'}>{Math.floor(coin.price_change_percentage_24h * 100) / 100}</p>
+            <p className="market-cap">
+              {currency.symbol} {coin.market_cap}
             </p>
           </div>
-        ))} */}
+        ))}
       </div>
     </div>
   );
